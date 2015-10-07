@@ -1,0 +1,8 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9986
+  adminConnectors:
+    - type: http
+      port: 9987
+      
