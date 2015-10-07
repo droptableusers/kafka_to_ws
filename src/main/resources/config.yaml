@@ -6,3 +6,7 @@ server:
     - type: http
       port: 9987
       
+kafkaConsumer:
+  topic: testTopic
+  zookeeper: localhost:2181
+  groupId: kafka_to_ws

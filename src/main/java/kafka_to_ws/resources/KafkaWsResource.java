@@ -6,6 +6,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import kafka_to_ws.SimplePubSub;
 import lombok.extern.slf4j.Slf4j;
 
 @ServerEndpoint("/kafkaws")
@@ -26,8 +27,6 @@ public class KafkaWsResource {
 	
 	@OnMessage
 	public String broadcast(Session session, String message) {
-		log.info("broadcast: {} / {}", session.getId(), message);
-		SimplePubSub.INSTANCE.publish(message);
 		return null;
 	}
 	

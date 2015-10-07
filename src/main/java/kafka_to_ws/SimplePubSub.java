@@ -1,10 +1,10 @@
-package kafka_to_ws.resources;
+package kafka_to_ws;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 
-public enum SimplePubSub {
+public enum SimplePubSub implements PubSub {
 	INSTANCE;
 	
 	public ConcurrentHashMap<Object, Consumer<String>> subscribers = new ConcurrentHashMap<>();

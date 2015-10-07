@@ -1,5 +1,6 @@
 package kafka_to_ws;
 
+import kafka_to_ws.config.KafkaToWsConfiguration;
 import kafka_to_ws.resources.KafkaWsResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -24,6 +25,11 @@ public class Main extends Application<KafkaToWsConfiguration>{
 	@Override
 	public void run(KafkaToWsConfiguration configuration, Environment environment) throws Exception {
 		websocketBundle.addEndpoint(KafkaWsResource.class);
+		ManagedKafkaClient managedKafkaClient = ManagedKafkaClient.builder()
+				.pubSub(SimplePubSub.INSTANCE)
+				.config(configuration.getKafkaConsumer())
+				.build();
+		environment.lifecycle().manage(managedKafkaClient);
 	}
 
 }
